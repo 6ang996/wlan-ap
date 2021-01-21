@@ -135,12 +135,13 @@ static void sm_events_report(EV_P_ ev_timer *w, int revents)
 		ds_dlist_insert_tail(&report_ctx->client_event_list, dpp_record);
 	}
 
-	if (!ds_dlist_is_empty(&report_ctx->client_event_list)) {
+	if (!ds_dlist_is_empty(&report_ctx->client_event_list) || !ds_dlist_is_empty(&report_ctx->channel_switch_list)) {
 		LOG(INFO, "Sending events report...");
 		dpp_put_events(report_ctx);
 	}
 
 	sm_events_report_clear(&report_ctx->client_event_list);
+	sm_events_report_clear(&report_ctx->channel_switch_list);
 }
 
 /******************************************************************************
