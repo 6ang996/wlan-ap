@@ -1,6 +1,18 @@
 #FROM ubuntu:18.04
 FROM ubuntu:20.04
 
+RUN echo 'deb http://mirrors.aliyun.com/ubuntu/ focal main restricted universe multiverse\n\
+deb-src http://mirrors.aliyun.com/ubuntu/ focal main restricted universe multiverse\n\
+deb http://mirrors.aliyun.com/ubuntu/ focal-security main restricted universe multiverse\n\
+deb-src http://mirrors.aliyun.com/ubuntu/ focal-security main restricted universe multiverse\n\
+deb http://mirrors.aliyun.com/ubuntu/ focal-updates main restricted universe multiverse\n\
+deb-src http://mirrors.aliyun.com/ubuntu/ focal-updates main restricted universe multiverse\n\
+deb http://mirrors.aliyun.com/ubuntu/ focal-proposed main restricted universe multiverse\n\
+deb-src http://mirrors.aliyun.com/ubuntu/ focal-proposed main restricted universe multiverse\n\
+deb http://mirrors.aliyun.com/ubuntu/ focal-backports main restricted universe multiverse\n\
+deb-src http://mirrors.aliyun.com/ubuntu/ focal-backports main restricted universe multiverse\n'\
+> /etc/apt/sources.list
+
 RUN apt-get update \
     && DEBIAN_FRONTEND="noninteractive" apt-get -y install tzdata \
     && apt-get install -y \
